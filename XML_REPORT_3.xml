@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataTemplate name ="XML_REPORT_3" description="SALARY REPORT" Version="1.0" >
+<parameters>
+<parameter name="slry_id" dataType="number" />
+</parameters>
+<dataQuery>
+<sqlStatement name="Q1">
+<![CDATA[
+select * from(
+(select 'drs_cutting' designation, 30 id from soft_salary)
+union
+(select 'drs_cutting' designation, 23 id from soft_salary)
+union
+(select 'drs_sth' designation, 22 id from soft_salary)
+union
+(select 'drs_sth' designation, 28 id from soft_salary)
+union
+(select 'drs_check' designation, 24 id from soft_salary))
+where id =:slry_id
+
+]]>
+</sqlStatement>
+</dataQuery>
+<dataStructure>
+<group name="G_INV" source="Q1">
+<element name="designation" value="designation" />
+<element name="id" value="id" />
+</group>
+</dataStructure>
+</dataTemplate>
